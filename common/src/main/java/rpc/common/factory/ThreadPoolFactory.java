@@ -52,6 +52,7 @@ public class ThreadPoolFactory {
         threadPoolsMap.entrySet().parallelStream().forEach(e->{
             ExecutorService executorService=e.getValue();
             executorService.shutdown();
+            logger.info("关闭线程池 [{}] [{}]", e.getKey(), executorService.isTerminated());
             try {
                 executorService.awaitTermination(10,TimeUnit.SECONDS);
             }catch (InterruptedException ex){
