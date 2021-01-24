@@ -44,15 +44,5 @@ SimpleRPCFramework是一款基于 Nacos 实现的 RPC 框架。网络传输实�
 | Data Length     | 数据字节的长度                                               |
 | Data Bytes      | 传输的对象，通常是一个`RpcRequest`或`RpcClient`对象，取决于`Package Type`字段，对象的序列化方式取决于`Serializer Type`字段。 |
 
-## 使用
 
-### 定义调用接口
-
-```java
-package top.guoziyang.rpc.api;
-
-public interface HelloService {
-    String hello(String name);
-}
-```
 
