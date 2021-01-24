@@ -6,7 +6,7 @@ import java.net.InetSocketAddress;
 /**
  * 服务注册接口
  */
-interface ServiceRegistry {
+public interface ServiceRegistry {
 
 
     /**
