@@ -21,7 +21,9 @@ public abstract class AbstractRpcServer implements RpcServer {
     protected String host;
     protected int port;
 
+    //服务注册
     protected ServiceRegistry serviceRegistry;
+    //服务提供
     protected ServiceProvider serviceProvider;
 
     public void scanSercices(){
@@ -39,10 +41,13 @@ public abstract class AbstractRpcServer implements RpcServer {
         }
         String basePackage=startClass.getAnnotation(ServiceScan.class).value();
         if("".equals(basePackage)){
+            //默认扫描和启动类同一个包下的所有类
             basePackage=mainClassName.substring(0,mainClassName.lastIndexOf("."));
         }
+        //获取对应包下的所有类的Class对象
         Set<Class<?>> classSet=ReflectUtil.getClasses(basePackage);
         for(Class<?> clazz:classSet){
+            //选出被注解修饰的对象，获取注解里的属性值
             if(clazz.isAnnotationPresent(Service.class)){
                 String serviceName=clazz.getAnnotation(Service.class).name();
                 Object obj;
@@ -52,7 +57,7 @@ public abstract class AbstractRpcServer implements RpcServer {
                     logger.error("创建 " + clazz + " 时有错误发生");
                     continue;
                 }
-                if("".equals(serviceName)){
+                if("".equals(serviceName)){//默认注册所有实现的接口
                     Class<?>[] interfaces=clazz.getInterfaces();
                     for(Class<?> oneInterface:interfaces){
                         publishService(obj,oneInterface.getCanonicalName());
