@@ -18,6 +18,13 @@ public class ServiceProviderImp implements ServiceProvider{
 
     private static final Map<String,Object> serviceMap=new ConcurrentHashMap<>();
     private static final Set<String> registeredService=ConcurrentHashMap.newKeySet();
+
+    /**
+     * 在本地缓存中添加服务对象
+     * @param service
+     * @param serviceName
+     * @param <T>
+     */
     @Override
     public <T> void addServiceProvider(T service, String serviceName) {
         if(registeredService.contains(serviceName)){
@@ -28,6 +35,11 @@ public class ServiceProviderImp implements ServiceProvider{
         logger.info("向接口: {} 注册服务: {}", service.getClass().getInterfaces(), serviceName);
     }
 
+    /**
+     * 获取对应的服务
+     * @param serviceName
+     * @return
+     */
     @Override
     public Object getServiceProvider(String serviceName) {
         Object service=serviceMap.get(serviceName);
