@@ -23,8 +23,13 @@ public class NacosUtil {
     private static final Set<String> serviceNames=new HashSet<>();
     private static  InetSocketAddress address;
 
+    //服务注册中心的地址
     private static final String SERVER_ADDR="127.0.0.1:8848";
 
+    /**
+     * 在类初始化时，与注册中心建立连接
+     * 以便服务器向中心注册服务和客户端的服务发现
+     */
     static {
         namingservice=getNacosNamingService();
     }
