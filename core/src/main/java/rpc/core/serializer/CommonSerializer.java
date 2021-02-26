@@ -22,13 +22,13 @@ public interface CommonSerializer {
     static CommonSerializer getByCode(int code) {
         switch (code) {
             case 0:
-                //return new KryoSerializer();
+                return new KryoSerializer();
             case 1:
-                //return new JsonSerializer();
+                return new JsonSerializer();
             case 2:
-                //return new HessianSerializer();
+                return new HessianSerializer();
             case 3:
-                //return new ProtobufSerializer();
+                return new ProtobufSerializer();
             default:
                 return null;
         }
